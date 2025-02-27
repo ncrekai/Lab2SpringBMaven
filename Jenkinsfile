@@ -6,11 +6,11 @@ pipeline {
     }
 
     stages {
-        stage('Start') {
-            steps {
-                echo 'NOTE: Tools/Maven running'
-            }
-        }
+        // stage('Start') {
+        //     steps {
+        //         echo 'NOTE: Tools/Maven running'
+        //     }
+        // }
         stage('Checkout') {
             steps {
                 checkout scmGit(branches: [[name: '*/main']],
@@ -25,12 +25,12 @@ pipeline {
                 echo 'NOTE: Compile stage added, running -> mvn clean compile'
             }
         }
-      //   stage('Build') {
-      //       steps {
-      //          sh " mvn clean install"
-      //           echo 'NOTE: Build will happen here'
-      //       }
-      //   }
+        stage('Build') {
+            steps {
+               sh " mvn clean package"
+                echo 'NOTE: Build will happen here'
+            }
+        }
         
         
         
