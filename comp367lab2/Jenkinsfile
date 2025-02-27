@@ -13,30 +13,24 @@ pipeline {
         }
         stage('Checkout') {
             steps {
-                // script {
-                //     git branch: 'main', 
-                //     credentialsId: 'fc119a1e-8277-4052-b3ea-73c9128d6797', 
-                //     url: 'https://github.com/ncrekai/Lab2SpringBMaven.git'
-                // }
-                // checkout scmGit(branches: [[name: '*/main']], 
-                // extensions: [cleanAfterCheckout()], 
-                
-                // userRemoteConfigs: [[
-                //     credentialsId: 'fc119a1e-8277-4052-b3ea-73c9128d6797', 
-                //     url: 'https://github.com/ncrekai/Lab2SpringBMaven.git'
-                // ]])
                 checkout scmGit(branches: [[name: '*/main']],
                 userRemoteConfigs: [[credentialsId: 'fc119a1e-8277-4052-b3ea-73c9128d6797', 
                 url: 'https://github.com/ncrekai/Lab2SpringBMaven.git']])
-                
                 echo 'NOTE: Git repo defined at checkout stage'
             }
         }
-        stage('Build') {
-            steps {
-                echo 'NOTE: Build will happen here'
+        stage("Compile"){
+            steps{
+                sh "mvn clean compile"
+                echo 'NOTE: Compile stage added, running -> mvn clean compile'
             }
         }
+      //   stage('Build') {
+      //       steps {
+      //          sh " mvn clean install"
+      //           echo 'NOTE: Build will happen here'
+      //       }
+      //   }
         
         
         
