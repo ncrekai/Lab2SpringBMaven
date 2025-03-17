@@ -22,7 +22,10 @@ pipeline {
         stage('Build') {
             steps {
                sh " mvn clean package"
-                archiveArtifacts artifacts: '/target/*.jar', fingerprint: true
+               echo "I live here: ${env.WORKSPACE}"
+                // archiveArtifacts artifacts: '/target/*.jar', fingerprint: true
+                // archiveArtifacts artifacts: '../../../../', fingerprint: true
+
             }
         }
     }
