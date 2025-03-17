@@ -17,13 +17,12 @@ pipeline {
         stage("Compile"){
             steps{
                 sh "mvn clean compile"
-                echo 'NOTE: Compile stage added, running -> mvn clean compile'
             }
         }
         stage('Build') {
             steps {
                sh " mvn clean package"
-                echo 'NOTE: Build will happen here'
+                archiveArtifacts artifacts: '/target/*.jar', fingerprint: true
             }
         }
     }
